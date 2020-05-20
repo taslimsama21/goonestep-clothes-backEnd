@@ -1,4 +1,4 @@
-package services;
+package com.goonestep.goonestepClothesAppBackEnd.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import models.User;
-import repository.UserRepository;
+import com.goonestep.goonestepClothesAppBackEnd.models.User;
+import com.goonestep.goonestepClothesAppBackEnd.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements  UserDetailsService{

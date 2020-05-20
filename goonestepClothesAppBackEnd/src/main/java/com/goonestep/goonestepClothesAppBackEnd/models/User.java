@@ -1,4 +1,4 @@
-package models;
+package com.goonestep.goonestepClothesAppBackEnd.models;
 
 import java.util.HashSet;
 import java.util.Set;

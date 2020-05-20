@@ -1,4 +1,4 @@
-package jwt;
+package com.goonestep.goonestepClothesAppBackEnd.jwt;
 
 import java.io.IOException;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import services.UserDetailsServiceImpl;
+import com.goonestep.goonestepClothesAppBackEnd.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 

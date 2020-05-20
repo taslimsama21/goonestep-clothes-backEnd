@@ -1,11 +1,11 @@
-package repository;
+package com.goonestep.goonestepClothesAppBackEnd.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import models.User;
+import com.goonestep.goonestepClothesAppBackEnd.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{

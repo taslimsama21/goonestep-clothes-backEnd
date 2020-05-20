@@ -1,4 +1,4 @@
-package services;
+package com.goonestep.goonestepClothesAppBackEnd.services;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,8 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import models.User;
+import com.goonestep.goonestepClothesAppBackEnd.models.User;
 
 public class UserDetailsImpl implements UserDetails {
 

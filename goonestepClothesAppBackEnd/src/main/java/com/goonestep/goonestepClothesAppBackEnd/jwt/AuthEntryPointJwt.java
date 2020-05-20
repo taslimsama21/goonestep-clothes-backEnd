@@ -1,4 +1,4 @@
-package jwt;
+package com.goonestep.goonestepClothesAppBackEnd.jwt;
 
 import java.io.IOException;
 

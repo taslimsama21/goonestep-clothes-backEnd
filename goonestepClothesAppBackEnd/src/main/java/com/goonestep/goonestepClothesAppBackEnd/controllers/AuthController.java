@@ -1,4 +1,4 @@
-package controllers;
+package com.goonestep.goonestepClothesAppBackEnd.controllers;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,18 +20,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import models.ERole;
-import models.Role;
-import models.User;
-import request.LoginRequest;
-import request.SignUpRequest;
-import response.JwtResponse;
-import response.MessageResponse;
-import repository.RoleRepository;
-import repository.UserRepository;
-import jwt.JwtUtils;
-import services.UserDetailsImpl;
+import com.goonestep.goonestepClothesAppBackEnd.jwt.JwtUtils;
+import com.goonestep.goonestepClothesAppBackEnd.models.ERole;
+import com.goonestep.goonestepClothesAppBackEnd.models.Role;
+import com.goonestep.goonestepClothesAppBackEnd.models.User;
+import com.goonestep.goonestepClothesAppBackEnd.repository.RoleRepository;
+import com.goonestep.goonestepClothesAppBackEnd.repository.UserRepository;
+import com.goonestep.goonestepClothesAppBackEnd.request.LoginRequest;
+import com.goonestep.goonestepClothesAppBackEnd.request.SignUpRequest;
+import com.goonestep.goonestepClothesAppBackEnd.response.JwtResponse;
+import com.goonestep.goonestepClothesAppBackEnd.response.MessageResponse;
+import com.goonestep.goonestepClothesAppBackEnd.services.UserDetailsImpl;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)

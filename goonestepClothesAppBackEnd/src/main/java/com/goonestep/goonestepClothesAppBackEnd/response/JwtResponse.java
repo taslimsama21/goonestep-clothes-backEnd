@@ -1,4 +1,4 @@
-package response;
+package com.goonestep.goonestepClothesAppBackEnd.response;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package request;
+package com.goonestep.goonestepClothesAppBackEnd.request;
 
 import java.util.Set;
 

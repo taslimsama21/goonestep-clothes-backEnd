@@ -1,4 +1,4 @@
-package security;
+package com.goonestep.goonestepClothesAppBackEnd.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import jwt.AuthEntryPointJwt;
-import jwt.AuthTokenFilter;
-import services.UserDetailsServiceImpl;
+import com.goonestep.goonestepClothesAppBackEnd.jwt.AuthEntryPointJwt;
+import com.goonestep.goonestepClothesAppBackEnd.jwt.AuthTokenFilter;
+import com.goonestep.goonestepClothesAppBackEnd.services.UserDetailsServiceImpl;
 
 
 @Configuration
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
-			.antMatchers("/api/test/**").permitAll()
+			.antMatchers("/api/test/**","/api/product/**","/api/user/**","/api/**").permitAll()
 			.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
