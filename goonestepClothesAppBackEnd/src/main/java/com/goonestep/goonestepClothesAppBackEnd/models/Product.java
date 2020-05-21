@@ -10,8 +10,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "product", uniqueConstraints = { @UniqueConstraint(columnNames = "id"),
-		@UniqueConstraint(columnNames = "name") })
+@Table(name = "product", uniqueConstraints = { @UniqueConstraint(columnNames = "name") })
 public class Product {
 
 	@Id
