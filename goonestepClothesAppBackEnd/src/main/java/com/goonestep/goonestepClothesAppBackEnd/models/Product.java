@@ -31,7 +31,7 @@ public class Product {
 	@Column(name = "price")
 	private String price;
 
-	@Column(name = "picByte", length = 1000)
+	@Column(name = "picByte", length = 100000)
 	private byte[] picByte;
 
 	public Long getId() {
