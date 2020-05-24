@@ -14,10 +14,5 @@ public interface OrderRepository extends JpaRepository<Order,Long>{
 
 	List<Order> findAll();
 	
-	@Query("SELECT * FROM Order * WHERE o.orderStatus = 0")
-	public List<Order> findAllOrder();
-	
-	@Query("SELECT o FROM Order o WHERE o.isApproved = 1")
-	public List<Order> findAllApproved();
 	
 }
