@@ -1,6 +1,5 @@
 package com.goonestep.goonestepClothesAppBackEnd.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,38 +8,35 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table( name="order",
+@Table( name="orders",
 uniqueConstraints = { 
-		@UniqueConstraint(columnNames = "name") })
+		@UniqueConstraint(columnNames = "orderId") })
 public class Order {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
 	
-	@Column(name="name")
 	private String name;
-	
-	@Column(name="userId")
-	private long userId;
-	
-	@Column(name="productId")
-	private long productId;
-	
+	private Long userId;
+	private Long productId;
 	private String email;
     private boolean approvedOrder;
 	private boolean rejectedOrder;
 	private String address;
-	private long pincode;
-	private long phoneNumber;
+	private Long pincode;
+	private Long phoneNumber;
 	private double totalCost;
-	private int quantity;
+	private Long quantity;
+	private boolean canceledOrder;
+	private boolean orderStatus;
+	
 	
 	public Order() {
 		super();
 	}
 	public Order(Long orderId, String name, Long userId, Long productId,String email,boolean approvedOrder,boolean rejectedOrder, String address,
-			long pincode, long phoneNumber,double totalCost,int quantity) {
+			Long pincode, Long phoneNumber,double totalCost,Long quantity,boolean canceledOrder,boolean orderStatus) {
 		super();
 		this.orderId = orderId;
 		this.name = name;
@@ -49,11 +45,13 @@ public class Order {
 	    this.email=email;
 	    this.approvedOrder=approvedOrder;
 	    this.rejectedOrder=rejectedOrder;
+	    this.canceledOrder=canceledOrder;
 		this.address = address;
 		this.pincode = pincode;
 		this.phoneNumber = phoneNumber;
 		this.totalCost=totalCost;
 		this.quantity=quantity;
+		this.orderStatus=orderStatus;
 	}
 	
 	public Long getOrderId() {
@@ -71,13 +69,13 @@ public class Order {
 	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public long getProductId() {
 		return productId;
 	}
-	public void setProductId(long productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 	public String getEmail() {
@@ -95,13 +93,13 @@ public class Order {
 	public long getPincode() {
 		return pincode;
 	}
-	public void setPincode(long pincode) {
+	public void setPincode(Long pincode) {
 		this.pincode = pincode;
 	}
 	public long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public double getTotalCost() {
@@ -110,11 +108,17 @@ public class Order {
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
+	public boolean isOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(boolean orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 
-	public int getQuantity() {
+	public Long getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
 	public boolean isApprovedOrder() {
@@ -128,5 +132,11 @@ public class Order {
 	}
 	public void setRejectedOrder(boolean rejectedOrder) {
 		this.rejectedOrder = rejectedOrder;
+	}
+	public boolean isCanceledOrder() {
+		return canceledOrder;
+	}
+	public void setCanceledOrder(boolean canceledOrder) {
+		this.canceledOrder = canceledOrder;
 	}
 }
