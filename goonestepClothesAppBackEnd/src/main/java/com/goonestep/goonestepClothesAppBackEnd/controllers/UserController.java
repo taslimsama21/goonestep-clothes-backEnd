@@ -16,12 +16,13 @@ import com.goonestep.goonestepClothesAppBackEnd.repository.UserRepository;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "api")
 public class UserController {
+	
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository userRepositoryForUserController;
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/user/list")
 	public List<User> getUsers() {
-		return userRepository.findAll();
+		return userRepositoryForUserController.findAll();
 	}
 }

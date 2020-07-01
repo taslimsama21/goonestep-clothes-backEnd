@@ -18,7 +18,7 @@ import com.goonestep.goonestepClothesAppBackEnd.response.MessageResponse;
 public class OrderService {
 	
 	@Autowired
-	OrderRepository orderRepository;
+	OrderRepository orderRepositoryForService;
 
 	public ResponseEntity<?> addNewOrder(Long orderId, Order orderData) {
 		orderData.setOrderId(orderId);
@@ -35,14 +35,14 @@ public class OrderService {
 		orderData.setOrderStatus(false);
 		orderData.setTotalCost(orderData.getTotalCost());
 		orderData.setUserId(orderData.getUserId());
-		orderRepository.save(orderData);
+		orderRepositoryForService.save(orderData);
 		
 		return ResponseEntity.ok(new MessageResponse("Your Order has been placed succesfully!!"));
 	}
 
 	public ResponseEntity<?> editOrder(Long orderId, Order orderData) {
 		
-		Optional<Order> data = orderRepository.findById(orderId);
+		Optional<Order> data = orderRepositoryForService.findById(orderId);
 		Order order = data.get();
 		order.setEmail(orderData.getEmail());
 		order.setAddress(orderData.getAddress());
@@ -54,35 +54,35 @@ public class OrderService {
 	}
 
 	public ResponseEntity<?> cancelOrder(Long orderId, Order orderData) {
-		Optional<Order> data = orderRepository.findById(orderId);
+		Optional<Order> data = orderRepositoryForService.findById(orderId);
 		Order order = data.get();
 		order.setCanceledOrder(true);
 		order.setOrderStatus(false);
-		return new ResponseEntity<>(orderRepository.save(order),HttpStatus.OK);
+		return new ResponseEntity<>(orderRepositoryForService.save(order),HttpStatus.OK);
 	}
 
 	public List<Order> getMyAllOrders(Long orderId) {
-		List<Order> orders  = orderRepository.getMyAllOrders(orderId);
+		List<Order> orders  = orderRepositoryForService.getMyAllOrders(orderId);
 		return orders;
 	}
 	
 	public List<Order> getMyCanceledOrders(Long orderId) {
-		List<Order> orders  = orderRepository.findCanceledOrders(orderId);
+		List<Order> orders  = orderRepositoryForService.findCanceledOrders(orderId);
 		return orders;
 	}
 
 	public List<Order> getMyApprovedOrders(Long orderId) {
-		List<Order> orders  = orderRepository.findApprovedOrders(orderId);
+		List<Order> orders  = orderRepositoryForService.findApprovedOrders(orderId);
 		return orders;
 	}
 
 	public List<Order> getMyRejectedOrders(Long orderId) {
-		List<Order> orders  = orderRepository.findRejectedOrders(orderId);
+		List<Order> orders  = orderRepositoryForService.findRejectedOrders(orderId);
 		return orders;
 	}
 
 	public Order getOrderDetails(Long orderId) {
-		Optional<Order> data = orderRepository.findById(orderId);
+		Optional<Order> data = orderRepositoryForService.findById(orderId);
 		Order orderInfo = data.get();
 		return orderInfo;
 	}
@@ -90,28 +90,28 @@ public class OrderService {
 	//Admin....
 
 		public List<Order> listOutApprovedOrders() {
-			List<Order> allOrders = orderRepository.getAllApprovedOrders();
+			List<Order> allOrders = orderRepositoryForService.getAllApprovedOrders();
 			return allOrders;	
 		}
 
 		public ResponseEntity<?> rejectOrder(Order orderData) {
-			Optional<Order> data = orderRepository.findById(orderData.getOrderId());
+			Optional<Order> data = orderRepositoryForService.findById(orderData.getOrderId());
 			Order order = data.get();
 			order.setRejectedOrder(true);
 			order.setOrderStatus(true);
-			return new ResponseEntity<>(orderRepository.save(order),HttpStatus.OK);
+			return new ResponseEntity<>(orderRepositoryForService.save(order),HttpStatus.OK);
 		}
 
 		public ResponseEntity<?> approveOrder(Order orderData) {
-			Optional<Order> data = orderRepository.findById(orderData.getOrderId());
+			Optional<Order> data = orderRepositoryForService.findById(orderData.getOrderId());
 			Order order = data.get();
 			order.setApprovedOrder(true);
 			order.setOrderStatus(true);
-			return new ResponseEntity<>(orderRepository.save(order),HttpStatus.OK);
+			return new ResponseEntity<>(orderRepositoryForService.save(order),HttpStatus.OK);
 		}
 
 		public List<Order> listOutRejectedOrders() {
-			List<Order> allOrders = orderRepository.getAllRejectedOrders();
+			List<Order> allOrders = orderRepositoryForService.getAllRejectedOrders();
 			return allOrders;
 		}
 
@@ -119,7 +119,7 @@ public class OrderService {
 			List<Integer> orders = new ArrayList<Integer>();
 			
 			for(int i=0;i<userData.size();i++) {
-				int order = orderRepository.findOrderByOrderId(userData.get(i).getId());
+				int order = orderRepositoryForService.findOrderByOrderId(userData.get(i).getId());
 				orders.add(order);
 			}
 			return orders;

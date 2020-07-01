@@ -27,11 +27,11 @@ public class ProductController {
 	private byte[] bytes;
 
 	@Autowired
-	private ProductRepository productRepository;
+	private ProductRepository productRepositoryForProductController;
 	
 	@GetMapping("/product/list")
 	public List<Product> getProducts() {
-		return productRepository.findAll();
+		return productRepositoryForProductController.findAll();
 	}
 	
 	@PostMapping("/product/upload")
@@ -43,18 +43,18 @@ public class ProductController {
 	@PostMapping("/product/add")
 	public void createProduct(@RequestBody Product product) throws IOException {
 		product.setPicByte(this.bytes);
-		productRepository.save(product);
+		productRepositoryForProductController.save(product);
 		this.bytes = null;
 	}
 	@DeleteMapping(path = { "/product/{id}" })
 	public Product deleteProduct(@PathVariable("id") long id) {
-		Product product = productRepository.findById(id).get();
-		productRepository.deleteById(id);
+		Product product = productRepositoryForProductController.findById(id).get();
+		productRepositoryForProductController.deleteById(id);
 		return product;
 	}
 	@PutMapping("/product/update")
 	public void updateProduct(@RequestBody Product product) {
-		productRepository.save(product);
+		productRepositoryForProductController.save(product);
 	}
 
 	

@@ -33,7 +33,7 @@ import com.goonestep.goonestepClothesAppBackEnd.response.MessageResponse;
 import com.goonestep.goonestepClothesAppBackEnd.services.UserDetailsImpl;
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -42,7 +42,7 @@ public class AuthController {
 	AuthenticationManager authenticationManager;
 
 	@Autowired
-	UserRepository userRepository;
+	UserRepository userRepositoryForAuth;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -77,13 +77,14 @@ public class AuthController {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+		
+		if (userRepositoryForAuth.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
 		}
 
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+		if (userRepositoryForAuth.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
@@ -125,7 +126,7 @@ public class AuthController {
 		}
 
 		user.setRoles(roles);
-		userRepository.save(user);
+		userRepositoryForAuth.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}

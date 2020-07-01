@@ -72,6 +72,8 @@ public class Product {
 	public void setPicByte(byte[] picByte) {
 		this.picByte = picByte;
 	}
-
+public Product() {
+	
+}
 	
 }

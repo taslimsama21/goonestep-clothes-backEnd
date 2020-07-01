@@ -30,7 +30,7 @@ repositoryBaseClass = OrderRepository.class)
 public class OrderController {
 
 	@Autowired
-	OrderRepository orderRepository;
+	OrderRepository orderRepositoryForOrderController;
 
 	@Autowired 
 	OrderService orderService;
@@ -40,7 +40,7 @@ public class OrderController {
 	@GetMapping("/user/order/list")
 	@PreAuthorize("hasRole('USER')")
 	public List<Order> getMyAllOrders(@PathVariable("orderId") Long orderId) {
-		return orderRepository.getMyAllOrders(orderId);
+		return orderRepositoryForOrderController.getMyAllOrders(orderId);
 	}
 	
 	@PreAuthorize("hasRole('USER')")
@@ -102,7 +102,7 @@ public class OrderController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/admin/order/total")
 	public List<Order> getTotalOrders() {
-		return orderRepository.findAll();
+		return orderRepositoryForOrderController.findAll();
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
